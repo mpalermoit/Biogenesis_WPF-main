@@ -1,0 +1,202 @@
+﻿<Window x:Class="Biogenesis_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Biogenesis_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1100">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="650"/>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <TextBox x:Name="TextBox_FiltroDispositivos" Margin="30,15" Width="150" Height="20" HorizontalAlignment="Left" TextChanged="TiempoFiltradoDispositivos"/>
+                        <Button Content="Clear" Click="ButtonClearDispositivos_Click" Margin="30,15" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    </StackPanel>
+
+
+                    <!--<StackPanel Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal">
+                        <Button x:Name="BarridoButton" Content="Iniciar Barrido" Click="BarridoButton_Click" Background="Green" Margin="30,15,30,15"/>
+                        <Button x:Name="DetenerBarrido" Content="Detener Barrido" Click="DetenerBarrido_Click" Background="Red" Margin="0,15,30,15"/>
+                    </StackPanel>-->
+                </Grid>
+
+                <DataGrid Grid.Row="1" x:Name="DataGridDispositivos" SelectionMode="Extended" Margin="30,0,30,0"  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserReorderColumns="False" HeadersVisibility="All" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Estado}" Value="Error">
+                                    <Setter Property="Background" Value="Red"/>
+                                    <Setter Property="Foreground" Value="#000000"/>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Estado}" Value="Desconectado">
+                                    <Setter Property="Background" Value="Yellow"/>
+                                    <Setter Property="Foreground" Value="#000000"/>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Estado}" Value="Conectado">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                    <Setter Property="Foreground" Value="#000000"/>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Estado}" Value="Nuevo">
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="#000000"/>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Activa}" Value="True">
+                                    <Setter Property="Background" Value="#4287f5"/>
+                                    <Setter Property="Foreground" Value="#000000"/>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Serial" Binding="{Binding Serial}" IsReadOnly="True" Width="*" MinWidth="100"/>
+                        <DataGridTextColumn Header="IP" Binding="{Binding Ip}" IsReadOnly="True" Width="*" MinWidth="100"/>
+                        <DataGridTextColumn Header="Acceso" Binding="{Binding Acceso}" IsReadOnly="True" Width="*" MinWidth="100"/>
+                        <DataGridTextColumn Header="Update" Binding="{Binding Update, StringFormat=dd/MM/yyyy HH:mm:ss}" IsReadOnly="True" Width="*" MinWidth="120"/>
+                        <DataGridTextColumn Header="Modelo" Binding="{Binding Modelo}" IsReadOnly="True" Width="*" MinWidth="80"/>
+                        <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" IsReadOnly="True" Width="*" MinWidth="60"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBox x:Name="TextBox_FiltroLogs" Margin="0,15,30,15" Width="200" Height="20" TextChanged="TiempoFiltradoLogs"/>
+                    <Button Content="Clear" Click="ButtonClearLogs_Click" VerticalAlignment="Center" Margin="0,15,30,15"/>
+                    
+                    
+                    
+                    <!--//Boton de delete logs
+                    <Button Content="Delete" Width="43" Height="19.96"  Click="ButtonDeleteLogs_Click"/>-->
+                    
+                    
+                    
+                    
+                </StackPanel>
+
+                <DataGrid Grid.Row="1" x:Name="DataGridLogs" Margin="0,0,30,0" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserReorderColumns="False" HeadersVisibility="All" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" >
+
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="TimeStamp" Binding="{Binding TiempoLog, StringFormat=dd/MM HH:mm:ss}" IsReadOnly="True" Width="100"/>
+                        <DataGridTextColumn Header="Serial" Binding="{Binding Serial}" IsReadOnly="True" Width="100"/>
+                        <DataGridTextColumn Header="Detalle" Binding="{Binding Detalle}" IsReadOnly="True" Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+        </Grid>
+
+        <StackPanel Grid.Row="1">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="Rutina: " VerticalAlignment="Center" Margin="30,30,10,10"/>
+                    <TextBox x:Name="Text_EstadoDispositivos" Width="150" Height="18" IsReadOnly="True" Margin="0,30,10,10" Text="{Binding texto}" />
+                    <TextBox x:Name="TiempoDispositivos" Width="60" Height="18" IsReadOnly="True" Margin="0,30,10,10" Text="{Binding texto}" />
+                </StackPanel>
+
+
+                <!--// ubicacion de segunda barra y reubicacion de la primera>
+                <StackPanel Grid.Column="1" Orientation="Vertical" Height="59" VerticalAlignment="Center" HorizontalAlignment="Left" Width="790">
+                    <ProgressBar x:Name="BarraProcesoRutina2" Height="4" Background="#FFA0A0A0" Foreground="Green" Value="{Binding valor}" Width="758" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,-16,0,-82"/>
+                    <ProgressBar x:Name="BarraProcesoRutina" Height="14" Background="#918c7c" Foreground="Green" Value="{Binding valor}" Width="758" HorizontalAlignment="Left" Margin="0,35,0,7" VerticalAlignment="Top" VerticalContentAlignment="Stretch"/>
+
+                </StackPanel>>-->
+
+
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="310"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,59,0">
+                    <TextBlock Text="Logs: " VerticalAlignment="Center" Margin="30,10,10,10"/>
+                    <TextBox x:Name="Text_EstadoEventos" Width="150" Height="18" IsReadOnly="True" Margin="10,10,10,10" Text="{Binding texto}" />
+                    <TextBox x:Name="TiempoEventos" Width="60" Height="18" IsReadOnly="True" Margin="0,10,10,10" Text="{Binding texto}" />
+                </StackPanel>
+
+                
+                
+                <!--//ubicacion de la segunda barra con cambio de color y reubicacion de la segunda
+                <StackPanel Orientation="Vertical" RenderTransformOrigin="0.5,0.496" Height="46" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Width="790">
+                    <ProgressBar x:Name="buffer" Height="8" Width="758" VerticalContentAlignment="Center"  ScrollViewer.HorizontalScrollBarVisibility="Hidden" RenderTransformOrigin="0.5,0.476" Minimum="0" Maximum="10" Background="#FFA0A0A0"  Value="{Binding valor}" HorizontalAlignment="Left" Margin="0,-2,0,0">
+                        <ProgressBar.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleY="0.5"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="14.192"/>
+                            </TransformGroup>
+                        </ProgressBar.RenderTransform>
+                    </ProgressBar>
+                    <ProgressBar x:Name="BarraProcesoEventos" Height="15" Width="758" Margin="0,11.5,30,11.5" Minimum="0" Maximum="5" Background="#918c7c" Foreground="Green" Value="{Binding valor}"  HorizontalAlignment="Left"/>
+                </StackPanel>-->
+                
+                
+                
+                
+            </Grid>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <TextBlock Text="Gateway: " VerticalAlignment="Center" Margin="30,10,1,30"/>
+                <TextBox x:Name="Text_GateWayState" Width="150" Height="18" IsReadOnly="True" Margin="0,10,30,30" Text="{Binding texto}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biogenesis_WPF", "Biogenesis_WPF\Biogenesis_WPF.csproj", "{7D0A6237-F672-4DB5-A14F-E924B20BD737}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D0A6237-F672-4DB5-A14F-E924B20BD737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D0A6237-F672-4DB5-A14F-E924B20BD737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D0A6237-F672-4DB5-A14F-E924B20BD737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D0A6237-F672-4DB5-A14F-E924B20BD737}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53AC8583-E95C-4E61-AC16-14DC88ED9BE3}
+	EndGlobalSection
+EndGlobal
